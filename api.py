@@ -1,6 +1,9 @@
 
+import http
+
 import simplejson as json
 from flask import Flask
+from flask import Response
 from influxdb import InfluxDBClient
 
 
@@ -23,7 +26,9 @@ app = Flask(__name__)
 @app.route('/query/<symbol>/<timestamp>', methods=['GET'])
 def get_data(symbol, timestamp):
     data = _get_data(symbol, timestamp)
-    return json.dumps(data)
+    response_msg = json.dumps(data)
+
+    return Response(response=response_msg, status=http.client.OK)
 
 
 if __name__ == '__main__':
