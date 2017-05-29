@@ -5,7 +5,7 @@ from influxdb import InfluxDBClient
 
 
 def _get_data(symbol, timestamp):
-    client = InfluxDBClient('localhost', 8086, 'root', 'root', 'test')
+    client = InfluxDBClient('localhost', 8086, 'root', 'root', 'stock_data')
     query_str = 'select * from daily_stock_data where symbol = \'{0}\' and time > \'{1}\''.format(symbol, timestamp)
 
     points = client.query(query_str).get_points()
@@ -27,4 +27,4 @@ def get_data(symbol, timestamp):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
