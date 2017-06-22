@@ -1,0 +1,8 @@
+uwsgi:
+    http-socket        : 0.0.0.0:5000
+    listen             : 128
+    processes          : 4
+    mount              : /stock_data/=api:app
+    manage-script-name : true
+    no-default-app     : true
+    plugins            : python
